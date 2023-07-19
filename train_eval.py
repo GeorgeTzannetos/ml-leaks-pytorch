@@ -65,6 +65,7 @@ def train_attacker(attack_net, shadow, shadow_train, shadow_out, optimizer, crit
     # Need to evaluate shadow model
     shadow_net = shadow
     shadow_net.eval()
+    attack_net.train()
 
     total = 0
     correct = 0
@@ -119,7 +120,7 @@ def train_attacker(attack_net, shadow, shadow_train, shadow_out, optimizer, crit
 
             print("[%d/%d] loss = %.2f, accuracy = %.2f" % (step, len(shadow_train), loss.item(), accuracy))
 
-        return running_loss
+    return running_loss
 
 
 def eval_attacker(attack_model, target_model, target_train, target_out, num_posterior):
